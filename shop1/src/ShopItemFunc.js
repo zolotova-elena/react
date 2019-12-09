@@ -39,5 +39,5 @@ ShopItemFunc.propTypes = {
         currency: PropTypes.string
     })
     */
-    item : PropTypes instanceof(Item).isRequired
+    item : PropTypes instanceOf(Item).isRequired
 };
