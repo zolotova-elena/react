@@ -18,6 +18,8 @@ export default class List extends React.Component {
         return newList;
     };
 
+
+
     render(){
         const {list, deleteTraining} = this.props;
 
