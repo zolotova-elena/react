@@ -6,14 +6,16 @@ import Form from "./Form";
 
 export default class Page extends React.Component {
     state = {
-        list : []
+        list : [
+           /*{date: "10.10.10", value: "10", timeStamp: 1286654400},
+           {date: "10.10.20", value: "3", timeStamp: 1602277200},
+            {date: "10.10.15", value: "11", timeStamp: 1444424400}*/
+        ]
     };
 
 
     addNewItem = (date, value) => {
-        //evt.preventDefault();
-
-        let list = this.state.list;
+        let {list} = this.state;
         let isInList = false;
         list.forEach((item, i) => {
             if (item.date === date) {
@@ -24,22 +26,15 @@ export default class Page extends React.Component {
         if (isInList === false) {
             list.push(new RowTraining(date, value));
         }
-        list = this.sortList(list);
+        //list = this.sortList(list);
 
         this.setState({list});
-
     };
 
-
-    sortList = (list) => {
-        //console.log('list',list);
-        list.sort((a,b) => {return b.timeStamp > a.timeStamp});
-        return list;
-    };
 
     deleteTraining = (date) => {
         //console.log('date', date);
-        let list = this.state.list;
+        let {list} = this.state;
         list = list.filter((item) => {
             return item.date !== date;
         });
