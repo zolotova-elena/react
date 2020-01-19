@@ -36,3 +36,29 @@
     transform: rotate(360deg);
   }
 }
+
+.notes {
+  padding: 10px;
+  width: 100%;
+}
+
+.notes-body {
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.notes-close {
+  width: 100%;
+  text-align: right;
+}
+.notes-close>i {
+  cursor: pointer;
+}
+.notes-close>i:hover, #notes-update:hover {
+  color: dodgerblue;
+}
+#notes-update {
+  cursor: pointer;
+}
