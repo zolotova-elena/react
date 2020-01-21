@@ -15,7 +15,7 @@ export default class Page extends React.Component {
 
 
     addNewItem = (date, value) => {
-        let {list} = this.state;
+        let list = this.state.list.slice();
         let isInList = false;
         list.forEach((item, i) => {
             if (item.date === date) {
@@ -34,8 +34,8 @@ export default class Page extends React.Component {
 
     deleteTraining = (date) => {
         //console.log('date', date);
-        let {list} = this.state;
-        list = list.filter((item) => {
+        let listCopy = this.state.list.slice();
+        const list = listCopy.filter((item) => {
             return item.date !== date;
         });
         this.setState({list});

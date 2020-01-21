@@ -32,14 +32,13 @@ export default class Form extends React.Component {
         evt.preventDefault();
         let {handleSubmit} = this.props;
 
-        let {date, value} = this.state;
+        const {date, value} = this.state;
         if (date.length  === 8 && value !== '') {
             //const {addList} = this.props;
             //console.log(addList);
             handleSubmit(date,value);
-            date = '';
-            value = '';
-            this.setState({date, value});
+
+            this.setState({date : '', value : ''});
         } else {
             alert('Неверный ввод!');
         }
