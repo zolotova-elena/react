@@ -13,6 +13,8 @@ import Contacts from './components/Contacts';
 import PageNotFound from './components/PageNotFound';
 import Item from './components/Item';
 import Main from './components/Main';
+import Cart from './components/Cart';
+import CartSuccess from './components/CartSuccess';
 /*
 
 !!! осталась корзина
@@ -29,6 +31,8 @@ export default function App () {
                 <Route path='/catalog' exact component={Catalog} />
                 <Route path='/about' component={About} />
                 <Route path='/contacts' component={Contacts} replace/>
+                <Route path='/cart' exact component={Cart} />
+                <Route path='/cart/success' exact component={CartSuccess} />
                 <Route path='/catalog/:id' exact component={Item} />
                 <Route path='*' component={PageNotFound} />
             </Switch>
