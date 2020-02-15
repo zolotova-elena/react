@@ -10,10 +10,14 @@ import {
     FETCH_CATEGORIES_ITEMS_SUCCESS,
 
     FETCH_TOP_ITEMS_REQUEST,
-    FETCH_TOP_ITEMS_FAILURE,
+    FETCH_TOP_ITEMS_ERROR,
     FETCH_TOP_ITEMS_SUCCESS,
 
     SEARCH_ITEM,
+
+    FETCH_ORDER_SEND_SERVER,
+    FETCH_ORDER_SUCCESS,
+    FETCH_ORDER_ERROR
 
 
 } from './actionTypes';
@@ -75,7 +79,7 @@ export const fetchServicesRequest = () => ({
 });
 
 export const fetchServicesFailure = error => ({
-    type: FETCH_TOP_ITEMS_FAILURE,
+    type: FETCH_TOP_ITEMS_ERROR,
     payload: {
         error,
     },
@@ -91,5 +95,23 @@ export const fetchServicesSuccess = items => ({
 //***//
 
 
+export const fetchOrderSendServer = (order) => ({
+    type: FETCH_ORDER_SEND_SERVER,
+    payload: {
+        order
+    }
+});
 
+export const fetchOrderSuccess = (order) => ({
+    type: FETCH_ORDER_SUCCESS,
+    payload: {
+        order
+    },
+});
 
+export const fetchOrderError = (error) => ({
+    type: FETCH_ORDER_ERROR,
+    payload: {
+        error,
+    },
+});

@@ -12,14 +12,10 @@ export default function Catalog() {
     const {text}                  = useSelector(state => state.serviceSearch);
     const dispatch                = useDispatch();
     const [index, setIndex]       = useState(null);
-    const offset                  = '&offset=';
+    //const offset                  = '&offset=';
     let [num, setNum]             = useState(6);
 
     function handleClick (evt, id) {
-        [...document.querySelectorAll('.justify-content-center > .nav-item > .nav-link')].map((item) => {
-            item.classList.remove('active')
-        });
-        evt.target.classList.add('active');
         dispatch(fetchCategoriesItems(id, '', text));
         setIndex(id);
         setNum(6);
@@ -28,7 +24,8 @@ export default function Catalog() {
     function clickLoadMore() {
         let sum = parseInt(num)+6;
         setNum(() => sum);
-        let out = offset + num;
+        //let out = offset + num;
+        let out = num;
         dispatch(fetchCategoriesItems(index, out, text));
     }
 
@@ -66,21 +63,31 @@ export default function Catalog() {
         }
     };
 
+    //console.log('data',data);
     return (
         <section className='container catalog'>
+            {checkLoading()}
+            {checkError()}
             <h2 className='text-center'>Каталог</h2>
 
             <Search/>
 
             <ul className='catalog-categories nav justify-content-center'>
                 <li className='nav-item'>
-                    <p className='nav-link active' onClick={(evt) => handleClick(evt)}>Все</p>
+                    <a href={'#'}
+                        className={index === null ? 'nav-link active' : 'nav-link'}
+                        onClick={(evt) => handleClick(evt)}>Все</a>
                 </li>
-                {items.map( (item) => (
-                    <li className='nav-item' key={item.id}>
-                        <p className='nav-link' onClick={(evt) => handleClick(evt, item.id)}>{item.title}</p>
-                    </li>
-                ))}
+                {items.map( (item) => {
+                    return(
+
+                        <li className='nav-item' key={item.id}>
+                            <a href={'#'}
+                               className={item.id === index ? 'nav-link active' : 'nav-link'}
+                               onClick={(evt) => handleClick(evt, item.id)}>{item.title}</a>
+                        </li>
+                    )
+                })}
             </ul>
             {data.length > 0 &&
             (<>
@@ -107,8 +114,6 @@ export default function Catalog() {
                 </div>}
             </>)
             }
-            {checkLoading()}
-            {checkError()}
 
         </section>
     )

@@ -1,7 +1,7 @@
 import { SERVICE_BASKET_COUNT } from '../actions/actionTypes'
 
-let initialState = {count: 5};
-let items = JSON.parse(localStorage.getItem("allItems"));
+let initialState = {count: 0};
+let items = JSON.parse(localStorage.getItem("items"));
 if(items !== null) {
     initialState = {count: items.length}
 }

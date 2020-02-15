@@ -1,6 +1,6 @@
 import {
     FETCH_TOP_ITEMS_REQUEST,
-    FETCH_TOP_ITEMS_FAILURE,
+    FETCH_TOP_ITEMS_ERROR,
     FETCH_TOP_ITEMS_SUCCESS
 
 } from '../actions/actionTypes'
@@ -20,7 +20,7 @@ export default function serviceList (state = initialState, action) {
                 error: null,
             };
 
-        case FETCH_TOP_ITEMS_FAILURE:
+        case FETCH_TOP_ITEMS_ERROR:
             const {error} = action.payload;
             return {
                 ...state,

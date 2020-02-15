@@ -114,11 +114,13 @@ export default function Item ({match}) {
     };
 
     const handleAddInBasket = () => {
-        history.replace('/item');
+        history.replace('/catalog');
 
         let objItems    = JSON.parse(localStorage.getItem(match.params.id));
         let obj         = Object.assign({}, objItems, object);
-        let oldArrItems = JSON.parse(localStorage.getItem('allItems')) || [];
+        let oldArrItems = JSON.parse(localStorage.getItem('items')) || [];
+
+        console.log('oldArrItems',oldArrItems);
 
         if(oldArrItems.length > 0) {
             let objFind = oldArrItems.filter(o => o.id === obj.id && o.size === obj.size );
@@ -131,9 +133,11 @@ export default function Item ({match}) {
             oldArrItems.push(obj)
         }
 
-        localStorage.setItem('allItems', JSON.stringify(oldArrItems));
+        localStorage.setItem('items', JSON.stringify(oldArrItems));
         dispatch(addInBasket(oldArrItems))
     };
+
+    //console.log('form', form);
 
     return (
         <>
@@ -178,10 +182,16 @@ export default function Item ({match}) {
                         <div className="text-center">
                             <p>Размеры в наличии:
                                 { form.sizes !== undefined &&
-                                form.sizes.map((item, i) => item.avalible &&
-                                    <span className={`catalog-item-size ${selected ? 'selected' : ''} `} key={i} onClick={handleSelected}>
-                                        {item.size}
-                                    </span> )
+                                form.sizes.map((item, i) => {
+                                    if (item.avalible) {
+                                        return (
+                                            <span className={`catalog-item-size ${selected ? 'selected' : ''} `} key={i} onClick={handleSelected}>
+                                                {item.size}
+                                            </span>
+                                        )
+                                    }
+                                    return null;
+                                } )
                                 }
                             </p>
                             { form.sizes !== undefined &&

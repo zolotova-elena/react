@@ -30,7 +30,7 @@ export default function Navbar () {
     };
 
     const handleToBasket = () => {
-        history.push('cart')
+        history.push('/cart')
     };
 
     return (
